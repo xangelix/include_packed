@@ -9,7 +9,7 @@
 //! Instead of embedding file contents directly into your source code, this crate
 //! processes files in a build script.
 //!
-//! 1.  **Build Script:** You use the [`Config`] builder in your `build.rs` script. For native
+//! 1.  **Build Script:** You use the [`build::Config`] builder in your `build.rs` script. For native
 //!     targets, it reads your asset files, compresses them with `zstd`, and creates
 //!     linkable object files.
 //! 2.  **Macro Expansion:** The `include_packed!` macro in your code expands to an
