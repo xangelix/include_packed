@@ -70,6 +70,38 @@ and keeps the final executable size smaller.
     }
     ```
 
+## Runtime Performance & Caching
+
+Unlike `std::include_bytes!`, which returns a `&'static [u8]`, the `include_packed!` macro returns a **`Vec<u8>`**.
+
+This is because the asset data is stored **compressed** within your binary. When you call the macro, the data must be decompressed at runtime into a newly allocated `Vec<u8>` on the heap. This decompression has a small but non-zero CPU and memory cost each time it's called.
+
+If you need to access an asset multiple times, it's recommended to decompress it only once and cache the result. The standard library's `std::sync::LazyLock` is perfect for this.
+
+### Example with `LazyLock`
+
+This example shows how to decompress an asset only on its first use. All subsequent accesses will be nearly zero-cost.
+
+```rust
+use std::sync::LazyLock;
+
+use include_packed::include_packed;
+
+// The asset is only decompressed the very first time `LARGE_ASSET` is accessed.
+// All subsequent accesses will just return a reference to the cached `Vec<u8>`.
+static LARGE_ASSET: LazyLock<Vec<u8>> = LazyLock::new(|| {
+    include_packed!("assets/large_model.bin")
+});
+
+fn main() {
+    // First access: decompresses the asset and prints its length.
+    println!("Asset size: {}", LARGE_ASSET.len());
+
+    // Second access: returns a reference to the cached Vec instantly.
+    println!("Asset size again: {}", LARGE_ASSET.len());
+}
+```
+
 ## License
 
 This project is licensed under the MIT License.
