@@ -4,6 +4,7 @@ version = "0.1.2"
 edition = "2024"
 license = "MIT"
 repository = "https://github.com/xangelix/include_packed"
+documentation = "https://docs.rs/include_packed_macros"
 description = "(semver-exempt implementation detail of `include-packed`; do not use)"
 
 [lib]

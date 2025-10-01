@@ -4,6 +4,7 @@ version = "0.1.2"
 edition = "2024"
 license = "MIT"
 repository = "https://github.com/xangelix/include_packed"
+documentation = "https://docs.rs/include_packed"
 description = "Include large, compressed binary files in an application without the compile time cost of `include_bytes!`"
 categories = ["development-tools::build-utils", "compression"]
 keywords = ["include", "bytes", "file", "zstd", "compression"]
