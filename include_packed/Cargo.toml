@@ -1,6 +1,6 @@
 [package]
 name = "include_packed"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
 license = "MIT"
 repository = "https://github.com/xangelix/include_packed"
@@ -15,7 +15,7 @@ readme = "../README.md"
 build = ["dep:object", "dep:thiserror"]
 
 [dependencies]
-include_packed_macros = { path = "../include_packed_macros", version = "0.1.0" }
+include_packed_macros = { path = "../include_packed_macros", version = "0.1" }
 # For runtime decompression.
 zstd = { version = "0.13", default-features = false }
 
