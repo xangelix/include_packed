@@ -6,7 +6,7 @@ license = "MIT"
 repository = "https://github.com/xangelix/include_packed"
 description = "Include large, compressed binary files in an application without the compile time cost of `include_bytes!`"
 categories = ["development-tools::build-utils", "compression"]
-keywords = ["include", "binary", "bytes", "file", "zstd", "compression"]
+keywords = ["include", "bytes", "file", "zstd", "compression"]
 readme = "../README.md"
 
 [features]
