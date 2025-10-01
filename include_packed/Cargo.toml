@@ -1,0 +1,30 @@
+[package]
+name = "include_packed"
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+repository = "https://github.com/xangelix/include_packed"
+description = "Include large, compressed binary files in an application without the compile time cost of `include_bytes!`"
+categories = ["development-tools::build-utils", "compression"]
+keywords = ["include", "binary", "bytes", "file", "zstd", "compression"]
+readme = "README.md"
+
+[features]
+# Enables the build-script helper functions.
+# This feature should be enabled in `[build-dependencies]`.
+build = ["dep:object", "dep:thiserror"]
+
+[dependencies]
+include_packed_macros = { path = "../include_packed_macros", version = "0.1.0" }
+# For runtime decompression.
+zstd = { version = "0.13", default-features = false }
+
+# For build script helper functions.
+object = { version = "0.37", default-features = false, features = [
+    "write",
+], optional = true }
+thiserror = { version = "2", optional = true }
+
+[dev-dependencies]
+# For running the test-project integration test
+which = "8"

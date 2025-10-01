@@ -1,0 +1,15 @@
+[package]
+name = "test_project"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+[dependencies]
+include_packed = { path = "../../" }
+
+[build-dependencies]
+include_packed = { path = "../../", features = ["build"] }
+
+[[bin]]
+name = "test_project"
+path = "src/bin/main.rs"

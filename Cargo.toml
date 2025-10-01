@@ -1,0 +1,7 @@
+[workspace]
+members = [
+    "include_packed",
+    "include_packed_macros",
+    "include_packed/tests/test_project",
+]
+resolver = "2"

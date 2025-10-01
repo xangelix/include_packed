@@ -1,0 +1,17 @@
+[package]
+name = "include_packed_macros"
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+repository = "https://github.com/xangelix/include_packed"
+description = "(semver-exempt implementation detail of `include-packed`; do not use)"
+
+[lib]
+proc-macro = true
+
+[dependencies]
+syn = { version = "2", features = ["full"] }
+quote = "1"
+proc-macro2 = "1"
+proc-macro-crate = "3"
+zstd = "0.13"
