@@ -57,7 +57,7 @@
 //!
 //! ```
 
-#![doc(html_root_url = "https://docs.rs/include_packed/0.1.0")]
+#![doc(html_root_url = "https://docs.rs/include_packed")]
 
 // Re-export the procedural macro.
 pub use include_packed_macros::include_packed;
