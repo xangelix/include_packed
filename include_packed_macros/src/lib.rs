@@ -64,12 +64,16 @@ fn get_tokens_wasm(lit_str: &LitStr) -> TokenStream2 {
         .expect("CARGO_MANIFEST_DIR is not set; this macro must be run by Cargo.");
     let path = PathBuf::from(manifest_dir).join(&path_str);
 
-    let content = fs::read(&path).unwrap_or_else(|err| {
-        panic!(
-            "include_packed: could not find file '{}' for wasm target: {err}",
-            path.display()
-        );
-    });
+    let content = match fs::read(&path) {
+        Ok(bytes) => bytes,
+        Err(err) => {
+            let msg = format!(
+                "include_packed: could not read file '{}' for wasm target: {err}",
+                path.display()
+            );
+            return syn::Error::new(lit_str.span(), msg).to_compile_error();
+        }
+    };
 
     let compressed_content = zstd::encode_all(&*content, zstd::DEFAULT_COMPRESSION_LEVEL)
         .expect("zstd compression failed in proc-macro");
@@ -129,9 +133,13 @@ fn get_tokens_native(lit_str: &LitStr) -> TokenStream2 {
     let unique_name = format!("include_packed_{:016x}", hasher.finish());
 
     let len_path = PathBuf::from(&out_dir).join(format!("{unique_name}.len"));
-    let len_str = fs::read_to_string(&len_path).unwrap_or_else(|_| {
-        panic!("include_packed: failed to read .len file for asset at '{path_str}'");
-    });
+    let Ok(len_str) = fs::read_to_string(&len_path) else {
+        let msg = format!(
+            "include_packed: failed to read .len file for asset at '{path_str}'\nexpected at: {}",
+            len_path.display()
+        );
+        return syn::Error::new(lit_str.span(), msg).to_compile_error();
+    };
 
     let compressed_len: usize = len_str.parse().unwrap_or_else(|_| {
         panic!(
