@@ -76,6 +76,7 @@ pub use include_packed_macros::include_packed;
 /// Panics if the provided data is not valid zstd-compressed data. This indicates a bug in
 /// `include_packed` itself, as the data should always be valid if generated correctly.
 #[doc(hidden)]
+#[track_caller]
 #[must_use]
 pub fn decompress(compressed_data: &'static [u8]) -> Vec<u8> {
     zstd::decode_all(compressed_data).expect(
