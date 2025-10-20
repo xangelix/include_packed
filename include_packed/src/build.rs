@@ -49,7 +49,7 @@ impl Config {
     /// Sets the zstd compression level (1-21).
     ///
     /// Higher levels provide better compression at the cost of slower build times.
-    /// If not set, a default level of `3` is used.
+    /// If not set, a default level of `6` is used.
     #[must_use]
     pub const fn level(mut self, level: i32) -> Self {
         self.level = level;
