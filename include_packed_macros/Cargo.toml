@@ -15,4 +15,4 @@ syn = { version = "2", features = ["full"] }
 quote = "1"
 proc-macro2 = "1"
 proc-macro-crate = "3"
-zstd = "0.13"
+zstd = { version = "0.13", default-features = false }
