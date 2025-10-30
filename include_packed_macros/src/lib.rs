@@ -113,7 +113,10 @@ fn get_tokens_native(lit_str: &LitStr) -> TokenStream2 {
     let canonical_path = path
         .canonicalize()
         .unwrap_or_else(|e| panic!("Could not find file '{}': {e}", path.display()));
-    let path_for_hashing = PathBuf::from(&path_str);
+    let path_for_hashing = canonical_path
+        .strip_prefix(&manifest_dir)
+        .unwrap_or(&canonical_path)
+        .to_path_buf();
     let metadata = fs::metadata(&canonical_path).unwrap_or_else(|e| {
         panic!(
             "Could not read metadata for '{}': {e}",
