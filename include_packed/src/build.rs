@@ -179,7 +179,7 @@ fn process_file(path: &Path, metadata: &fs::Metadata, level: i32) -> Result<()> 
     let object_path = PathBuf::from(&out_dir).join(object_file_name);
     fs::write(&object_path, obj_buf)?;
 
-    let len_file_path = format!("{out_dir}/{unique_name}.len");
+    let len_file_path = PathBuf::from(&out_dir).join(format!("{unique_name}.len"));
     fs::write(len_file_path, compressed_content.len().to_string())?;
 
     println!("cargo:rustc-link-arg={}", object_path.display());
