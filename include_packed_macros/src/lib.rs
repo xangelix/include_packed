@@ -95,10 +95,13 @@ fn get_tokens_wasm(lit_str: &LitStr) -> TokenStream2 {
 
 /// Native implementation: Uses build script artifacts (.len file and linked .o file).
 fn get_tokens_native(lit_str: &LitStr) -> TokenStream2 {
+    use std::{
+        collections::hash_map::DefaultHasher,
+        hash::{Hash, Hasher},
+    };
+
     use proc_macro_crate::{FoundCrate, crate_name};
     use proc_macro2::Span;
-    use std::collections::hash_map::DefaultHasher;
-    use std::hash::{Hash, Hasher};
     use syn::Ident;
 
     let out_dir =
