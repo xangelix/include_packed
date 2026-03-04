@@ -13,7 +13,7 @@ readme = "../README.md"
 [features]
 # Enables the build-script helper functions.
 # This feature should be enabled in `[build-dependencies]`.
-build = ["dep:object", "dep:thiserror"]
+build = ["dep:object", "dep:thiserror", "dep:cc"]
 
 [dependencies]
 include_packed_macros = { path = "../include_packed_macros", version = "0.1" }
@@ -25,6 +25,7 @@ object = { version = "0.38", default-features = false, features = [
     "write",
 ], optional = true }
 thiserror = { version = "2", optional = true }
+cc = { version = "1.2.56", default-features = false, optional = true }
 
 [dev-dependencies]
 # For running the test-project integration test
