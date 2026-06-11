@@ -25,7 +25,7 @@ object = { version = "0.38", default-features = false, features = [
     "write",
 ], optional = true }
 thiserror = { version = "2", optional = true }
-cc = { version = "1.2.56", default-features = false, optional = true }
+cc = { version = "1", default-features = false, optional = true }
 
 [dev-dependencies]
 # For running the test-project integration test
