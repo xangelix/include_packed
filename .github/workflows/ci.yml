@@ -25,5 +25,8 @@ jobs:
       - name: Check formatting
         run: cargo fmt --all -- --check
 
+      - name: Run tests
+        run: cargo test --workspace --all-features
+
       - name: Run test project
         run: cargo run -p test_project
