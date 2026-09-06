@@ -11,8 +11,8 @@ description = "(semver-exempt implementation detail of `include-packed`; do not 
 proc-macro = true
 
 [dependencies]
-syn = { version = "2", features = ["full"] }
+syn = { version = "3", features = ["full"] }
 quote = "1"
 proc-macro2 = "1"
 proc-macro-crate = "3"
-zstd = { version = "0.13", default-features = false }
+zstd = { version = "0.14", default-features = false }

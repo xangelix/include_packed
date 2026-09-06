@@ -18,10 +18,10 @@ build = ["dep:object", "dep:thiserror", "dep:cc"]
 [dependencies]
 include_packed_macros = { path = "../include_packed_macros", version = "0.1" }
 # For runtime decompression.
-zstd = { version = "0.13", default-features = false }
+zstd = { version = "0.14", default-features = false }
 
 # For build script helper functions.
-object = { version = "0.39", default-features = false, features = [
+object = { version = "0.40", default-features = false, features = [
     "write",
 ], optional = true }
 thiserror = { version = "2", optional = true }
