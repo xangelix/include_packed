@@ -82,7 +82,7 @@ impl Config {
     }
 }
 
-/// The default compression level used by [`make_includable`].
+/// The default compression level used by [`Config`].
 pub const DEFAULT_COMPRESSION_LEVEL: i32 = 6;
 
 /// A specialized `Result` type for build script operations.

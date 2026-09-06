@@ -36,7 +36,7 @@
 //!
 //! 2. Create a `build.rs` file in your project root to prepare the assets.
 //!
-//! ```no_run
+//! ```ignore
 //! // build.rs
 //! // This handles all platform-specific logic automatically.
 //! include_packed::Config::new("assets")
@@ -47,7 +47,7 @@
 //!
 //! 3. Use the macro in your code to include an asset.
 //!
-//! ```no_run
+//! ```ignore
 //! // src/main.rs
 //! use include_packed::include_packed;
 //!
@@ -89,6 +89,6 @@ pub fn decompress(compressed_data: &'static [u8]) -> Vec<u8> {
 //
 
 #[cfg(feature = "build")]
-mod build;
+pub mod build;
 #[cfg(feature = "build")]
 pub use build::Config;
